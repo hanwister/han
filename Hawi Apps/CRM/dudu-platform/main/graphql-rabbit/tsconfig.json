@@ -1,0 +1,12 @@
+{
+    "externals": {
+        "pg-native": "commonjs pg-native"
+    },
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "target": "esnext",
+        "types": [
+            "@prisma/client", "node"
+          ]
+    }
+}

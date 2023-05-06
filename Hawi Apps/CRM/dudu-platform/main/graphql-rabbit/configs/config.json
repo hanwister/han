@@ -1,0 +1,49 @@
+{
+    "id": "private",
+    "AMQP_URL": "amqp://private-graphql:buuandbee@rabbit.tolife.me:5672",
+    "GRAPHQL_PORT": 4081,
+    "tables": [
+        {
+            "id": "relation",
+            "columns": [
+                { "id": "field", "type": "3", "required": true},
+                { "id": "reference", "type": "3", "required": true},
+                { "id": "column_id", "type": "3", "required": true},
+                { "id": "column", "type": "column", "relations": [
+                    { "field": "column_id", "reference": "id"}
+                ]}
+            ],
+            "schema": "private"
+        },
+        {
+            "id": "table",
+            "columns": [
+                { "id": "name", "name": "name", "type": "3" },
+                { "id": "schema", "name": "schema", "type": "3", "required": false},
+                { "id": "columns", "name": "columns", "type": "column", "is_many": true, "relations": [
+                    { "field": "id", "reference": "id"}
+                ]}
+            ],
+            "schema": "private"
+        },
+        {
+            "id": "column",
+            "columns": [
+                { "id": "name", "name": "name", "type": "3"},
+                { "id": "dname", "name": "dname", "type": "3" },
+                { "id": "type", "name": "type", "type": "3", "required": true, "no_modify": true },
+                { "id": "required", "name": "is_many", "type": "4" },
+                { "id": "is_many", "name": "is_many", "type": "4" },
+                { "id": "no_modify", "name": "is_many", "type": "4" },
+                { "id": "relations", "name": "relations", "type": "relation", "is_many": true, "relations": [
+                    { "field": "id", "reference": "column_id"}
+                ] },
+                { "id": "table_id", "name": "table_id", "type": "3", "required": true },
+                { "id": "table", "name": "table", "type": "table", "relations": [
+                    { "field": "table_id", "reference": "id"}
+                ]}
+            ],
+            "schema": "private"
+        }
+    ]
+}
